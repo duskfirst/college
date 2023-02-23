@@ -5,10 +5,10 @@ in descending order.
 #include <stdio.h>
 
 //for ascending order
-void asc_sort(int r, int c, int arr[r][c]);
+void asc_sort(int r, int c, int **arr);
 
 //for descending order
-void dsc_sort(int r, int c, int arr[r][c]);
+void dsc_sort(int r, int c, int **arr);
 
 //main funct
 int main()
@@ -64,7 +64,6 @@ int main()
             }
         }
     }
-
     //arranging in descending order
     for (int k = 0; k < c; k++)
     {
