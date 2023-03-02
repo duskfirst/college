@@ -3,7 +3,7 @@
 
 int det(int s, int **a);
 
-int main(void)
+int main()
 {
     //values for rows and columns
     int r, c, deter;
@@ -100,7 +100,6 @@ int det(int s, int **a)
             c1 += 1;
             c2 = 0;
         }
-
         d += (i % 2 ? -1 : 1) * a[0][i] * det(s - 1, minor);
     }
 

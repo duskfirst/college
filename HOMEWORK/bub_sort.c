@@ -1,29 +1,5 @@
 //bubble sort
 #include <stdio.h>
-  
-void bubble(int arr[], int s)
-{
-    int flag = 1;
-    while(flag != 0)
-    {
-        flag = 0;
-        int a;
-        for (int j = 0; j < s - 1; j++)
-        {
-            for (int i = 0; i < s - j - 1; i++)
-            {
-                if (arr[i + 1] < arr[i])
-                {
-                    a = arr[i + 1];
-                    arr[i + 1] = arr[i];
-                    arr[i] = a;
-                    flag += 1;
-                }
-            }
-        }
-    }
-    return;
-}
 
 int main()
 {
@@ -37,8 +13,24 @@ int main()
         scanf("%d", &arr[i]);
     }
     
-    bubble(arr, s);
-
+    int lim = 0;
+    int flag = 1;
+    while(flag != 0)
+    {
+        flag = 0;
+        int a;
+        for (int i = 0; i < s - lim - 1; i++)
+        {
+            if (arr[i + 1] < arr[i])
+            {
+                a = arr[i + 1];
+                arr[i + 1] = arr[i];
+                arr[i] = a;
+                flag += 1;
+            }
+        }
+        lim++;
+    }
     for (int i = 0; i < s; i++)
     {
         printf("%d ", arr[i]);
