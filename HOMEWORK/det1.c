@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+void minor(int s, int **arr,int **b, int m, int n);
 int det(int s, int **a);
 
 int main()
@@ -66,17 +66,17 @@ int det(int s, int **a)
     int d = 0;
 
     //base condition
-    if (s == 2)
+    if (s == 1)
     {
-        d = a[0][0] * a[1][1] - a[0][1] * a[1][0];
+        d = a[0][0];
         return d;
     }
     
     //minor array declare
-    int **minor = (int**)malloc((s - 1) * sizeof(int*));
+    int **min = (int**)malloc((s - 1) * sizeof(int*));
     for (int i = 0; i < s - 1; i++)
     {
-        minor[i] = (int*)malloc((s - 1) * sizeof(int*));
+        min[i] = (int*)malloc((s - 1) * sizeof(int*));
     }
 
     //for finding the value for d = determinant
@@ -87,26 +87,39 @@ int det(int s, int **a)
         c2 = 0;
 
         //giving the values inside minor
-        for (int j = 1; j < s; j++)
-        {
-            for (int k = 0; k < s; k++)
-            {
-                if (k != i)
-                {
-                    minor[c1][c2] = a[j][k];
-                    c2 += 1; 
-                }
-            }
-            c1 += 1;
-            c2 = 0;
-        }
-        d += (i % 2 ? -1 : 1) * a[0][i] * det(s - 1, minor);
+        minor(s, a, min, 0, i);
+        d += (i % 2 ? -1 : 1) * a[0][i] * det(s - 1, min);
     }
 
     for (int i = 0; i < s - 1; i++)
     {
-        free(minor[i]);
+        free(min[i]);
     }
-    free(minor);
+    free(min);
     return d;  
+}
+
+void minor(int s, int **arr,int **b, int m, int n)
+{
+    int c1 = 0;
+    int c2 = 0;
+    for (int i = 0; i < s; i++)
+    {
+        if (i == m)
+        {
+            continue;
+        }
+        for (int j = 0; j < s; j++)
+        {
+            if (j == n)
+            {
+                continue;
+            }
+            b[c1][c2] = arr[i][j];
+            c2 += 1;
+        }
+        c2 = 0;
+        c1 += 1;
+    }
+    return;
 }

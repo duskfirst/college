@@ -72,12 +72,14 @@ void minor(int s, int arr[s][s],int b[s - 1][s - 1], int m, int n)
         {
             continue;
         }
+        printf("i = %d", i);
         for (int j = 0; j < s; j++)
         {
             if (j == n)
             {
                 continue;
             }
+            printf("j = %d", j);
             b[c1][c2] = arr[i][j];
             c2 += 1;
         }
